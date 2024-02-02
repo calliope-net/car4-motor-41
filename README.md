@@ -1,5 +1,5 @@
 
-> Diese Seite bei [https://elssner.github.io/i2c-car4-motor/](https://elssner.github.io/i2c-car4-motor/) öffnen
+> Diese Seite bei [https://calliope-net.github.io/i2c-car4-motor/](https://calliope-net.github.io/i2c-car4-motor/) öffnen
 
 ## Als Erweiterung verwenden
 
@@ -8,15 +8,15 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 * öffne [https://makecode.calliope.cc/](https://makecode.calliope.cc/)
 * klicke auf **Neues Projekt**
 * klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/elssner/41-car4-servo** suchen und importieren
+* nach **https://github.com/calliope-net/i2c-car4-motor** suchen und importieren
 
-## Dieses Projekt bearbeiten ![Build status badge](https://github.com/elssner/41-car4-servo/workflows/MakeCode/badge.svg)
+## Dieses Projekt bearbeiten ![Build status badge](https://github.com/calliope-net/i2c-car4-motor/workflows/MakeCode/badge.svg)
 
 Um dieses Repository in MakeCode zu bearbeiten.
 
 * öffne [https://makecode.calliope.cc/](https://makecode.calliope.cc/)
 * klicke auf **Importieren** und dann auf **Importiere URL**
-* füge **https://github.com/elssner/41-car4-servo** ein und klicke auf Importieren
+* füge **https://github.com/calliope-net/i2c-car4-motor** ein und klicke auf Importieren
 
 ## Blocks preview
 
