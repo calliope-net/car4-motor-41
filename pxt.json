@@ -1,5 +1,5 @@
 {
-    "name": "car4-motor-41",
+    "name": "i2c-car4-motor",
     "version": "0.0.3",
     "description": "",
     "dependencies": {
