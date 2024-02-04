@@ -9,6 +9,7 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (bConnected) {
         if (iFahrstrecke == 0) {
             bit.comment("dauerhaft wenn connected (Joystick, nicht bei Fahrstrecke)")
+            SpurSensor()
             bit.comment("1 Servo 45..90..135")
             if (ServoSteuerung(qwiicmotor.getReceivedNumber(NumberFormat.UInt8LE, qwiicmotor.eOffset.z1))) {
                 bit.comment("0 Motor 0..128..255")
@@ -38,8 +39,15 @@ function MotorSteuerung (pMotorPower: number, pFahrstrecke: number) {
         qwiicmotor.writeRegister(qwiicmotor.qwiicmotor_eADDR(qwiicmotor.eADDR.Motor_x5D), qwiicmotor.qwiicmotor_eRegister(qwiicmotor.eRegister.MA_DRIVE), iMotor)
     }
 }
+function SpurSensor () {
+    return " " + pins.digitalReadPin(DigitalPin.C9) + "" + pins.digitalReadPin(DigitalPin.C11)
+}
 function zeigeStatus () {
-    lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 15, lcd16x2rgb.lcd16x2_text("" + bit.formatText(iMotor, 3, bit.eAlign.right) + bit.formatText(iServo, 4, bit.eAlign.right) + bit.formatText(iFahrstrecke, 4, bit.eAlign.right) + bit.formatText(iEncoder, 5, bit.eAlign.right)))
+    if (iFahrstrecke == 0) {
+        lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 15, lcd16x2rgb.lcd16x2_text("" + bit.formatText(iMotor, 3, bit.eAlign.right) + bit.formatText(iServo, 4, bit.eAlign.right) + SpurSensor() + bit.formatText(iEncoder, 5, bit.eAlign.right)))
+    } else {
+        lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 15, lcd16x2rgb.lcd16x2_text("" + bit.formatText(iMotor, 3, bit.eAlign.right) + bit.formatText(iServo, 4, bit.eAlign.right) + bit.formatText(iFahrstrecke, 4, bit.eAlign.right) + bit.formatText(iEncoder, 5, bit.eAlign.right)))
+    }
     lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 1, 0, 7, "" + bit.formatText(Math.round(bit.measureInCentimeters(DigitalPin.C8)), 3, bit.eAlign.right) + bit.formatText(Helligkeit(pins.analogReadPin(AnalogPin.P1)), 4, bit.eAlign.right))
     lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 1, 8, 15, "" + bit.formatText(bit.roundWithPrecision(wattmeter.get_bus_voltage_V(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45)), 1), 3, bit.eAlign.right) + "V" + bit.formatText(wattmeter.get_current_mA(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45)), 4, bit.eAlign.right))
 }
@@ -75,6 +83,7 @@ function Konfiguration () {
     bit.comment("P4 Servo; ")
     bit.comment("P5 Draht blau; P6 Draht gelb")
     bit.comment("P7 Licht; P8 Ultraschall")
+    bit.comment("P9; P11 Spursensor (0 schwarz, 1 weiß)")
     bit.comment("5 Erweiterungen: Funk; BIT; LCD 16x2; Motor; Wattmeter")
 }
 function ServoSteuerung (pWinkel: number) {
