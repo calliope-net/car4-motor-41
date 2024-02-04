@@ -40,7 +40,7 @@ function MotorSteuerung (pMotorPower: number, pFahrstrecke: number) {
     }
 }
 function SpurSensor () {
-    return " " + pins.digitalReadPin(DigitalPin.C9) + "" + pins.digitalReadPin(DigitalPin.C11)
+    return " " + pins.digitalReadPin(DigitalPin.C11) + " " + pins.digitalReadPin(DigitalPin.C9)
 }
 function zeigeStatus () {
     if (iFahrstrecke == 0) {
@@ -83,7 +83,7 @@ function Konfiguration () {
     bit.comment("P4 Servo; ")
     bit.comment("P5 Draht blau; P6 Draht gelb")
     bit.comment("P7 Licht; P8 Ultraschall")
-    bit.comment("P9; P11 Spursensor (0 schwarz, 1 weiß)")
+    bit.comment("P9 rechts; P11 links Spursensor (0 schwarz, 1 weiß)")
     bit.comment("5 Erweiterungen: Funk; BIT; LCD 16x2; Motor; Wattmeter")
 }
 function ServoSteuerung (pWinkel: number) {
@@ -108,7 +108,7 @@ let iLaufzeit = 0
 let bConnected = false
 pins.digitalWritePin(DigitalPin.P0, 1)
 lcd16x2rgb.initLCD(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E))
-lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 15, lcd16x2rgb.lcd16x2_text("CaR4 0.0.0"))
+lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 15, lcd16x2rgb.lcd16x2_text("CaR4 0.1.0"))
 wattmeter.reset(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45))
 qwiicmotor.init(qwiicmotor.qwiicmotor_eADDR(qwiicmotor.eADDR.Motor_x5D))
 bConnected = false
