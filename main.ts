@@ -9,7 +9,6 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (bConnected) {
         if (iFahrstrecke == 0) {
             bit.comment("dauerhaft wenn connected (Joystick, nicht bei Fahrstrecke)")
-            SpurSensor()
             bit.comment("1 Servo 45..90..135")
             if (ServoSteuerung(qwiicmotor.getReceivedNumber(NumberFormat.UInt8LE, qwiicmotor.eOffset.z1))) {
                 bit.comment("0 Motor 0..128..255")
